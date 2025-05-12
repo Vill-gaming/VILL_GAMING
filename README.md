@@ -1,2 +1,0 @@
-# VILL_GAMING
-Cukurukuk 
