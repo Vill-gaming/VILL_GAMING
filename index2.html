@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingtree dengan Animasi Petir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .profile h1 {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .profile p {
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .link-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .link-item i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .instagram { color: #E1306C; }
+        .facebook { color: #1877F2; }
+        .twitter { color: #1DA1F2; }
+        .youtube { color: #FF0000; }
+
+        /* Animasi Petir */
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .lightning:before {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, #fff 50%, transparent 100%);
+            animation: lightning 5s linear infinite;
+        }
+
+        .lightning:after {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, #fff 50%, transparent 100%);
+            animation: lightning 7s linear infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes lightning {
+            0% {
+                top: -100%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            12% {
+                opacity: 0.2;
+            }
+            14% {
+                opacity: 0.8;
+            }
+            16% {
+                opacity: 0.3;
+            }
+            18% {
+                opacity: 1;
+            }
+            20% {
+                opacity: 0;
+                top: 100%;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Efek tambahan untuk petir */
+        .lightning-bolt {
+            position: absolute;
+            width: 3px;
+            height: 0;
+            background: aqua;
+            box-shadow: 0 0 10px 2px #5d00c9;
+            opacity: 0;
+            z-index: 2;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="lightning"></div>
+    
+    <div class="container">
+        <div class="profile">
+            <img src="pp.jpg" alt="Profile Picture">
+            <h1>VILL GAMING</h1>
+            <p>jangan lupa subscribe</p>
+        </div>
+        
+        <div class="links">
+            <a href="https://youtu.be/are3xguXxX4?si=L_sFHRmTMWme8Z00" class="link-item youtube">
+                <i class="fab fa-youtube"></i> youtube utama
+            </a>
+            <a href="https://youtube.com/shorts/FwvWmzBg_do?si=aBDtJ0XB_6v9zOsN" class="link-item facebook">
+                <i class="fab fa-youtube"></i> youtube shorts
+
+    <script>
+        // Fungsi untuk membuat efek petir acak
+        function createLightning() {
+            const body = document.body;
+            const bolt = document.createElement('div');
+            bolt.className = 'lightning-bolt';
+            
+            // Posisi acak
+            const left = Math.random() * 100;
+            bolt.style.left = `${left}%`;
+            
+            // Animasi petir
+            bolt.style.height = '0';
+            bolt.style.opacity = '1';
+            
+            // Durasi dan tinggi acak
+            const duration = Math.random() * 200 + 100;
+            const height = Math.random() * 50 + 50;
+            
+            bolt.style.transition = `height ${duration}ms linear, opacity ${duration}ms linear`;
+            
+            setTimeout(() => {
+                bolt.style.height = `${height}%`;
+            }, 10);
+            
+            setTimeout(() => {
+                bolt.style.opacity = '0';
+            }, duration / 2);
+            
+            body.appendChild(bolt);
+            
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                bolt.remove();
+            }, duration + 100);
+        }
+        
+        // Jalankan efek petir secara berkala
+        setInterval(createLightning, 800);
+        
+        // Juga jalankan saat mengklik di mana saja
+        document.addEventListener('click', () => {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createLightning, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
